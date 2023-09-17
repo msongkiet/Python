@@ -1,7 +1,7 @@
-from binance_price import get_crypto_price
+from price import getCryptoPrice
 from cdc_indi import cdc_indi
 from cdc_scan import cdc_scan
-from line_notify import line_notify
+from line import lineNotify
 
 import pandas as pd
 import os
@@ -23,7 +23,7 @@ tf = '1d'
 
 for j in range(len(tickers)):
     try:
-        price_df = get_crypto_price(tickers[j], tf)
+        price_df = getCryptoPrice(tickers[j], tf)
         price_df = cdc_indi(price_df)
         signal = cdc_scan(price_df)
         if(len(signal)!=0):
@@ -38,12 +38,12 @@ for j in range(len(tickers)):
     except Exception as e:
         print(e)
         
-line_notify(f'TF {tf} Crypto Golden Cross: {msg_golden_cross}', token)
-line_notify(f'TF {tf} Crypto Dead Cross: {msg_dead_cross}', token)
-line_notify(f'TF {tf} Crypto Pre-Buy Zone: {msg_pre_buy}', token)
-line_notify(f'TF {tf} Crypto Pre-Sell Zone: {msg_pre_sell}', token)
+lineNotify(f'TF {tf} Crypto Golden Cross: {msg_golden_cross}', token)
+lineNotify(f'TF {tf} Crypto Dead Cross: {msg_dead_cross}', token)
+lineNotify(f'TF {tf} Crypto Pre-Buy Zone: {msg_pre_buy}', token)
+lineNotify(f'TF {tf} Crypto Pre-Sell Zone: {msg_pre_sell}', token)
 
-line_notify(f'TF {tf} Crypto Golden Cross: {msg_golden_cross}', token1)
-line_notify(f'TF {tf} Crypto Dead Cross: {msg_dead_cross}', token1)
-line_notify(f'TF {tf} Crypto Pre-Buy Zone: {msg_pre_buy}', token1)
-line_notify(f'TF {tf} Crypto Pre-Sell Zone: {msg_pre_sell}', token1)
+lineNotify(f'TF {tf} Crypto Golden Cross: {msg_golden_cross}', token1)
+lineNotify(f'TF {tf} Crypto Dead Cross: {msg_dead_cross}', token1)
+lineNotify(f'TF {tf} Crypto Pre-Buy Zone: {msg_pre_buy}', token1)
+lineNotify(f'TF {tf} Crypto Pre-Sell Zone: {msg_pre_sell}', token1)
